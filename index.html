@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calificador de Exámenes - Modo Teclado</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+<header>
+<div class="header-row">
+<div class="select-group">
+<label for="gradeSelect">Grado</label>
+<div class="select-wrapper">
+<select id="gradeSelect" aria-label="Seleccionar grado"></select>
+</div>
+</div>
+<div class="select-group">
+<label for="studentSearch">Estudiante (Escribir para filtrar, Enter para seleccionar)</label>
+<div class="select-wrapper" style="position:relative;">
+<input type="text" id="studentSearch" class="search-input" placeholder="Seleccione un grado primero..." autocomplete="off" aria-label="Buscar estudiante">
+<div id="studentList" class="student-list" role="listbox"></div>
+</div>
+</div>
+<div class="stats-bar" id="statsBar" style="display:none;">
+<div class="stat correct"><span>Aciertos:</span><span class="stat-value" id="correctCount">0</span></div>
+<div class="stat wrong"><span>Errores:</span><span class="stat-value" id="wrongCount">0</span></div>
+<div class="stat grade"><span>Nota:</span><span class="stat-value" id="finalGrade">0.0</span></div>
+</div>
+</div>
+</header>
+<main>
+<div class="matrix-container">
+<div class="matrix-header">
+<h2 class="matrix-title">Matriz de Respuestas (30 preguntas) — Use teclas A/B/C/D para responder, Backspace/↑ para retroceder, Enter para guardar</h2>
+<div class="progress" id="progressText">0/30 respondidas</div>
+</div>
+<div class="question-grid" id="questionGrid" role="grid" aria-label="Preguntas del examen"></div>
+</div>
+</main>
+<footer>
+<div class="footer-content">
+<div class="shortcuts" id="shortcutsHelp">
+<span class="shortcut"><kbd>A</kbd><kbd>B</kbd><kbd>C</kbd><kbd>D</kbd> Responder y avanzar</span>
+<span class="shortcut"><kbd>Backspace</kbd><kbd>↑</kbd> Retroceder</span>
+<span class="shortcut"><kbd>Enter</kbd> Guardar y siguiente</span>
+<span class="shortcut"><kbd>Ctrl+Enter</kbd> Guardar en cualquier momento</span>
+</div>
+<div style="display:flex; gap:12px; align-items:center;">
+<button class="export-btn" id="exportBtn" title="Exportar a Excel">📊 Exportar Excel</button>
+<button class="save-btn" id="saveBtn" disabled>✓ Guardar y Siguiente Estudiante</button>
+</div>
+</div>
+</footer>
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
